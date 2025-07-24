@@ -1,0 +1,301 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif; /* Usamos Montserrat de Google Fonts */
+    /* Fondo con degradado morado sutil */
+    background: linear-gradient(to bottom, #4a148c, #7b1fa2); /* Morado oscuro a un tono más claro */
+    color: #e0e7ff; /* Texto claro para contraste */
+    overflow: hidden; /* Evita el scroll y los elementos fuera de pantalla */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centrar todo el contenido verticalmente */
+    min-height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
+    position: relative; /* Necesario para las estrellas */
+}
+
+/* Contenedor para las estrellas (parte de las estrellas animadas) */
+.star-field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Permite interacciones con el contenido debajo */
+    z-index: -1; /* Asegura que las estrellas estén detrás del contenido principal */
+}
+
+/* Estilo para cada estrella */
+.star {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    opacity: 0; /* Inicialmente invisible */
+    animation: star-movement 10s linear infinite; /* Animación de movimiento en bucle */
+}
+
+/* Animación para el movimiento de las estrellas */
+@keyframes star-movement {
+    0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    50% {
+        transform: translate(100vw, -100vh) scale(1); /* Mover de abajo-izquierda a arriba-derecha */
+        opacity: 0.9;
+    }
+    100% {
+        transform: translate(200vw, -200vh) scale(0.5);
+        opacity: 0;
+    }
+}
+
+
+/* Generar estrellas con posiciones y tamaños aleatorios (esto se genera en HTML, no directamente en CSS si no usas SASS)
+   Para simular el efecto de "viento" y "bucle", se añadirán varias estrellas directamente en el HTML
+   con clases individuales o mediante JavaScript para mayor control si es necesario.
+   Para mantenerlo en CSS plano, haré un conjunto de reglas para varias estrellas con delays diferentes.
+*/
+
+/* Ejemplo de estrellas con posiciones y retrasos aleatorios */
+.star:nth-child(1) { top: 10%; left: 5%; width: 2px; height: 2px; animation-delay: 0s; animation-duration: 15s; }
+.star:nth-child(2) { top: 20%; left: 15%; width: 3px; height: 3px; animation-delay: 1s; animation-duration: 12s; }
+.star:nth-child(3) { top: 5%; left: 30%; width: 1px; height: 1px; animation-delay: 2s; animation-duration: 10s; }
+.star:nth-child(4) { top: 30%; left: 40%; width: 2px; height: 2px; animation-delay: 3s; animation-duration: 14s; }
+.star:nth-child(5) { top: 15%; left: 55%; width: 3px; height: 3px; animation-delay: 4s; animation-duration: 11s; }
+.star:nth-child(6) { top: 40%; left: 70%; width: 1px; height: 1px; animation-delay: 5s; animation-duration: 13s; }
+.star:nth-child(7) { top: 25%; left: 85%; width: 2px; height: 2px; animation-delay: 6s; animation-duration: 16s; }
+.star:nth-child(8) { top: 50%; left: 10%; width: 3px; height: 3px; animation-delay: 7s; animation-duration: 9s; }
+.star:nth-child(9) { top: 60%; left: 25%; width: 1px; height: 1px; animation-delay: 8s; animation-duration: 10s; }
+.star:nth-child(10) { top: 70%; left: 45%; width: 2px; height: 2px; animation-delay: 9s; animation-duration: 12s; }
+/* Puedes añadir muchas más de estas reglas para más estrellas */
+/* Ejemplo de 10 estrellas más, ajusta 'top', 'left', 'animation-delay' y 'animation-duration' */
+.star:nth-child(11) { top: 5%; left: 90%; width: 2px; height: 2px; animation-delay: 0.5s; animation-duration: 13s; }
+.star:nth-child(12) { top: 35%; left: 5%; width: 3px; height: 3px; animation-delay: 1.5s; animation-duration: 10s; }
+.star:nth-child(13) { top: 80%; left: 15%; width: 1px; height: 1px; animation-delay: 2.5s; animation-duration: 11s; }
+.star:nth-child(14) { top: 20%; left: 95%; width: 2px; height: 2px; animation-delay: 3.5s; animation-duration: 14s; }
+.star:nth-child(15) { top: 75%; left: 60%; width: 3px; height: 3px; animation-delay: 4.5s; animation-duration: 9s; }
+.star:nth-child(16) { top: 10%; left: 70%; width: 1px; height: 1px; animation-delay: 5.5s; animation-duration: 15s; }
+.star:nth-child(17) { top: 90%; left: 30%; width: 2px; height: 2px; animation-delay: 6.5s; animation-duration: 12s; }
+.star:nth-child(18) { top: 45%; left: 80%; width: 3px; height: 3px; animation-delay: 7.5s; animation-duration: 10s; }
+.star:nth-child(19) { top: 65%; left: 50%; width: 1px; height: 1px; animation-delay: 8.5s; animation-duration: 13s; }
+.star:nth-child(20) { top: 0%; left: 40%; width: 2px; height: 2px; animation-delay: 9.5s; animation-duration: 11s; }
+
+/* Para que estas estrellas se muestren, DEBES agregarlas al HTML dentro de .star-field
+   Ejemplo en HTML:
+   <div class="star-field">
+       <div class="star"></div>
+       <div class="star"></div>
+       <div class="star"></div>
+       </div>
+*/
+
+
+.sunset-background, .sky-elements, .cloud, .flying-emoji {
+    display: none; /* Aseguramos que estos elementos viejos no se muestren */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px; /* Padding reducido para móviles */
+    box-sizing: border-box;
+    width: 95%; /* Ocupa casi todo el ancho */
+    max-width: 380px; /* Ancho máximo para no ser demasiado grande en tabletas/desktops */
+    margin: auto; /* Centrar el contenedor en la pantalla */
+    z-index: 1; /* Asegura que el contenido esté sobre las estrellas */
+}
+
+/* Restaura el estilo original del contenedor del mensaje */
+.message-container {
+    background-color: rgba(25, 30, 50, 0.85); /* Fondo oscuro semi-transparente */
+    color: #e0e7ff; /* Texto azul claro */
+    padding: 15px; /* Padding original */
+    border-radius: 10px; /* Borde redondeado original */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Sombra original */
+    width: 100%; /* Asegura que ocupe el ancho del contenedor padre */
+    box-sizing: border-box; /* Asegura que el padding no desborde */
+    margin-bottom: 15px; /* Espacio entre el mensaje y el reproductor */
+    text-align: center; /* Centrar el texto por defecto */
+}
+
+
+/* Modificaciones para el título del mensaje (texto más vivo) */
+.message-title {
+    font-size: 2em; /* Título más grande y llamativo */
+    color: #f8bbd0; /* Un rosa suave para contraste */
+    text-shadow: 2px 2px 4px #000; /* Sombra para que resalte el texto */
+    margin-bottom: 15px;
+    /* Animación de brillo para el título */
+    animation: glow-title 2s ease-in-out infinite alternate;
+    text-align: center; /* Asegura que el título esté centrado */
+    letter-spacing: 0.05em; /* Un poco de espacio entre letras */
+}
+
+@keyframes glow-title {
+    0% { text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 10px #f8bbd0; }
+    100% { text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px #e91e63; } /* Un rosa más intenso al final */
+}
+
+/* Modificaciones para el texto del mensaje (más centrado, pequeño y ordenado) */
+.message-text {
+    font-size: 0.8em; /* Texto un poco más pequeño */
+    line-height: 1.6; /* Más espacio entre líneas para facilitar la lectura */
+    color: #eee; /* Un gris más claro para el texto */
+    text-align: center; /* Centrar el texto */
+    white-space: pre-line; /* Respeta los saltos de línea en el texto */
+    margin-bottom: 0; /* Elimina margen inferior extra */
+    letter-spacing: 0.02em; /* Espacio sutil entre letras para orden */
+    /* Animación de parpadeo o latido suave para el texto */
+    animation: text-pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes text-pulse {
+    0% { transform: scale(1); opacity: 0.95; }
+    100% { transform: scale(1.005); opacity: 1; } /* Ajuste de escala más sutil */
+}
+
+
+.music-player {
+    background-color: rgba(25, 30, 50, 0.85); /* Fondo más oscuro y semi-transparente */
+    color: #e0e7ff; /* Texto azul claro para el tema espacial */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    order: 2; /* Asegura que el reproductor vaya después */
+}
+
+#song-title {
+    font-size: 1.3em;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #aaddff;
+}
+
+#artist {
+    font-size: 0.85em;
+    color: #b0c4de;
+    margin-bottom: 10px;
+}
+
+.lyrics-container {
+    min-height: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#current-lyric-center {
+    font-size: 1em;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Añadimos transición para la transformación */
+    min-height: 1.2em;
+    color: #e0e7ff;
+    transform: scale(0.9); /* Empezar ligeramente más pequeño */
+}
+
+#current-lyric-center.fade-in {
+    opacity: 1;
+    transform: scale(1); /* Escalar al tamaño normal al aparecer */
+    /* Animación de brillo suave al aparecer */
+    animation: soft-glow 0.6s ease-in-out forwards, soft-pulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes soft-glow {
+    0% { text-shadow: 0 0 5px rgba(224, 231, 255, 0.3); }
+    100% { text-shadow: 0 0 15px rgba(224, 231, 255, 0.8); }
+}
+
+/* Animación de pulsación suave */
+@keyframes soft-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+
+.flowing-text-column {
+    display: none !important;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.control-btn {
+    background-color: #405070;
+    color: #e0e7ff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.control-btn:hover {
+    background-color: #556688;
+    transform: translateY(-1px);
+}
+
+.control-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.heart-btn {
+    font-size: 1.3em;
+    padding: 10px 15px;
+}
+
+.burst-emoji {
+    position: absolute;
+    font-size: 1.8em;
+    pointer-events: none;
+    opacity: 0;
+    animation: burst-fade-out 0.8s ease-out forwards;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes burst-fade-out {
+    0% {
+        opacity: 1;
+        transform: translate(var(--x-start, 0), var(--y-start, 0)) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--x-end, 0), var(--y-end, 0)) scale(0.8);
+    }
+}
+
+@media (max-width: 360px) {
+    .message-title {
+        font-size: 1.4em;
+    }
+    .message-text {
+        font-size: 0.9em;
+    }
+    #song-title {
+        font-size: 1.2em;
+    }
+    .control-btn {
+        padding: 8px 15px;
+        font-size: 1em;
+    }
+    .heart-btn {
+        padding: 8px 12px;
+        font-size: 1.2em;
+    }
+}
